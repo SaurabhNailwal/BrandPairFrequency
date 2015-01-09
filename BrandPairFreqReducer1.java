@@ -30,16 +30,15 @@ public class BrandPairFreqReducer1 extends MapReduceBase implements Reducer<Text
 						
 			brandTs = brandTs+ values.next().toString()+ " ";
             
-		}
-		System.out.println("red1 final o/p- "+ brandTs);
-		
+		}		
 		
 		//Sorting Brands as per Timestamp
 		String[] pairs = brandTs.toString().split("\\s"); 
 		String[] delimSplit= null;
 		int counter=0;  		
 		
-		String[] brand = new String[1000];//to change as this limits the number of
+		//to change will need to be dynamic instead
+		String[] brand = new String[1000];
 		int[] ts = new int[1000];//
 		
 		
@@ -56,14 +55,13 @@ public class BrandPairFreqReducer1 extends MapReduceBase implements Reducer<Text
 		      ts[counter]= Integer.parseInt(delimSplit[1]);       
 		      	      
 		      token.nextToken();
-		      System.out.println("brand counter ="+ brand[counter]);
+		      
 		      counter++;
 		      
 			}
 			
 		}
 		
-		System.out.println("counter value before bubble sort"+ counter);
 		// Bubble sort for sorting the timestamp and brand sequence
 		for(int i=0;i<counter;i++)
 		{
@@ -84,17 +82,12 @@ public class BrandPairFreqReducer1 extends MapReduceBase implements Reducer<Text
 				
 		}
 		
-	
-		
-		System.out.println("brand.length"+ counter);
 		for(int i=0;i <= counter;i++){
 			if(brand[i]!=null)
 			{
 		          finalValue = finalValue + brand[i] + " "; 
 			}
 		}
-		
-		System.out.println("finalvalue :"+ finalValue);
 				
 		output.collect(new Text(""),new Text(finalValue));
 
