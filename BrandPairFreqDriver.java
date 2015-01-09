@@ -15,7 +15,7 @@ public class BrandPairFreqDriver extends Configured implements Tool{
 
 		//creating a JobConf object and assigning a job name for identification purposes
 		JobConf job1 = new JobConf(getConf(),BrandPairFreqDriver.class);
-        job1.setJobName("asg1_Job1");    
+        job1.setJobName("BrandPairFreqJob1");    
         
 
         //Setting configuration object with the Data Type of output Key and Value
@@ -35,7 +35,7 @@ public class BrandPairFreqDriver extends Configured implements Tool{
         
         //creating a JobConf object and assigning a job name
         JobConf job2 = new JobConf(getConf(),BrandPairFreqDriver.class);
-        job2.setJobName("asg1_Job2");
+        job2.setJobName("BrandPairFreqJob2");
         
         job2.setOutputKeyClass(Text.class);
         job2.setOutputValueClass(IntWritable.class);
@@ -45,12 +45,13 @@ public class BrandPairFreqDriver extends Configured implements Tool{
                 
 
         //the hdfs input and output directory
-        FileInputFormat.addInputPath(job1, new Path("asg1_input")); //new Path(args[0]));        
-        FileOutputFormat.setOutputPath(job1,new Path("asg1_output1")); //new Path(args[1]));
+        //this will run using eclipse, but if you want to run using hdfs then chang to args[0] and args[1]
+        FileInputFormat.addInputPath(job1, new Path("input")); //new Path(args[0]));        
+        FileOutputFormat.setOutputPath(job1,new Path("output1")); //new Path(args[1]));
         JobClient.runJob(job1);
         
-        FileInputFormat.addInputPath(job2, new Path("asg1_output1")); //new Path(args[0]));        
-        FileOutputFormat.setOutputPath(job2,new Path("asg1_output2")); //new Path(args[1]));
+        FileInputFormat.addInputPath(job2, new Path("output1")); //new Path(args[0]));        
+        FileOutputFormat.setOutputPath(job2,new Path("output2")); //new Path(args[1]));
         JobClient.runJob(job2);
 
         return 0;
