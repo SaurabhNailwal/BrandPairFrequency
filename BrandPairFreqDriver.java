@@ -45,7 +45,7 @@ public class BrandPairFreqDriver extends Configured implements Tool{
                 
 
         //the hdfs input and output directory
-        //this will run using eclipse, but if you want to run using hdfs then chang to args[0] and args[1]
+        //this will run using eclipse, but if you want to run using hdfs then change to args[0] and args[1]
         FileInputFormat.addInputPath(job1, new Path("input")); //new Path(args[0]));        
         FileOutputFormat.setOutputPath(job1,new Path("output1")); //new Path(args[1]));
         JobClient.runJob(job1);
